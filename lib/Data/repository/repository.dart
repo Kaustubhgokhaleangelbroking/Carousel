@@ -1,25 +1,29 @@
-// import 'dart:convert';
+import 'dart:convert';
 
-// import 'carousel.dart';
-// import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
+//import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-// //const baseUrl = 'https://randomuser.me/api/0.4/?randomapi';
-// const baseUrl = 'https://randomuser.me/api';
-// final nextUrl = (next) => '$baseUrl/$next/?randomapi';
+import '../models/carousel.dart';
 
-// class CarouselRepository {
-//   final http.Client httpClient;
-//   CarouselRepository({@required this.httpClient}) : assert(httpClient != null);
+//const baseUrl = 'https://randomuser.me/api/0.4/?randomapi';
+const baseUrl = 'https://randomuser.me/api';
+final nextUrl = (next) => '$baseUrl/$next/?randomapi';
 
-//   Future<Carousel> getUserData(String next) async {
-//     final response =
-//         await this.httpClient.get(baseUrl + '/' + next + '/?randomapi');
-//     if (response.statusCode == 200) {
-//       final user = jsonDecode(response.body);
-//       return Carousel.fromJson(user);
-//     } else {
-//       throw Exception('Error');
-//     }
-//   }
-// }
+class CarouselRepository {
+  Future<List<Carousel>> getUserData(String next) async {
+    final response = await http.get(nextUrl(next));
+    if (response.statusCode == 200) {
+      final user = jsonDecode(response.body);
+      return Carousel.fromJson(user) as List;
+    } else {
+      throw Exception('Error');
+    }
+  }
+}
+
+// final http.Client httpClient;
+//   CarouselRepository({this.httpClient}) : assert(httpClient != null);
+
+/*this.httpClient*/
+
+/*baseUrl + '/' + next + '/?randomapi'*/
