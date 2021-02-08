@@ -1,18 +1,18 @@
-// part of 'swipe_bloc.dart';
+part of 'swipe_bloc.dart';
 
-// abstract class SwipeEvent extends Equatable {
-//   const SwipeEvent();
+abstract class SwipeEvent {
+  const SwipeEvent();
 
-//   @override
-//   List<Object> get props => [];
-// }
+  @override
+  List<Object> get props => [];
+}
 
-// class SwipeLeftEvent extends Equatable {
-//   @override
-//   List<Object> get props => [];
-// }
+class SwipeLeftEvent extends SwipeEvent {
+  @override
+  List<Object> get props => [];
+}
 
-// class SwipeRightEvent extends Equatable {
-//   @override
-//   List<Object> get props => [];
-// }
+class SwipeRightEvent extends SwipeEvent {
+  @override
+  List<Object> get props => [];
+}

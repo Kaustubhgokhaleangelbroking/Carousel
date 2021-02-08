@@ -1,10 +1,10 @@
-// part of 'list_bloc.dart';
+part of 'list_bloc.dart';
 
-// abstract class ListEvent extends Equatable {
-//   const ListEvent();
+abstract class ListEvent {
+  const ListEvent();
 
-//   @override
-//   List<Object> get props => [];
-// }
+  @override
+  List<Object> get props => [];
+}
 
-// class ListFetchEvent extends ListEvent {}
+class ListFetchEvent extends ListEvent {}
