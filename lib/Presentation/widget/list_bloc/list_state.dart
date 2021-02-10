@@ -6,10 +6,12 @@ abstract class ListState {
 
 class ListInitial extends ListState {}
 
+class ListLoadingState extends ListState {}
+
 class ListFailure extends ListState {}
 
 class ListSuccess extends ListState {
-  final List name;
+  final carousel;
 
-  ListSuccess({this.name});
+  ListSuccess({this.carousel});
 }

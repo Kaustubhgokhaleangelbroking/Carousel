@@ -1,12 +1,9 @@
-// import 'package:Carousel/Data/models/carousel.dart';
-import 'package:Carousel/Data/models/carousel.dart';
-import 'package:Carousel/Data/repository/repository.dart';
+import './presentation/utilities/card_swap.dart';
+
+import './data/models/carousel.dart';
+import './data/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-// import 'Presentation/utilities/card_swap.dart';
-// import 'Presentation/widget/list_bloc/list_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +19,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Color(0xFF111111),
         ),
-        home: App());
+        home: Home());
   }
 }
 
@@ -34,13 +31,13 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  CarouselRepository carouselRepository;
-  Future<List<Carousel>> futureCarousel;
+  final carouselRepository = CarouselRepository(); //usecase r-d-u
+  Future<Carousel> futureCarousel;
 
   @override
   void initState() {
     super.initState();
-    futureCarousel = callData();
+    futureCarousel = carouselRepository.getUserData();
   }
 
   @override
@@ -51,27 +48,27 @@ class _AppState extends State<App> {
         ),
         // body: Text('data'),
 
-        body: FutureBuilder<List<Carousel>>(
+        body: FutureBuilder<Carousel>(
           future: futureCarousel,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data
-                  .toString() /*snapshot.data.first.toString() callData()*/);
+              return Text(snapshot.data.results.length.toString());
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
             return Center(child: CircularProgressIndicator());
           },
-        )
-
-        // body: Container(
-        //   child: callData(),
-        // ),
-        );
+        ));
   }
 
-  Future<List<Carousel>> callData() async {
-    var a = await carouselRepository.getUserData(0.5.toString());
-    return print(a) as List;
+  Future<Carousel> callData() async {
+    var a = await carouselRepository.getUserData();
+    return (a);
   }
 }
+/*
+usecase to repo 
+repo to data source
+data source to data client
+use of usecase
+*/
