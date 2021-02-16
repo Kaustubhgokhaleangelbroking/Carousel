@@ -1,5 +1,5 @@
-import '../../Data/models/carousel.dart';
+import '../../data/models/carousel.dart';
 
-abstract class CarouselRepositoryAbstract {
+abstract class CarouselRepository {
   Future<Carousel> getUserData();
 }

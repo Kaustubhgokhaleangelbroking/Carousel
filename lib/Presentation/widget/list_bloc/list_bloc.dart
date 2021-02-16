@@ -1,32 +1,10 @@
 import 'dart:async';
-
-// import 'package:Carousel/Data/models/carousel.dart';
-// import 'package:Carousel/data/models/carousel.dart';
-import '../../../domain/usecase/user_use_case.dart';
-
-// import '../../../data/repository/repository.dart';
 import 'package:bloc/bloc.dart';
+
+import '../../../domain/usecase/user_use_case.dart';
 
 part 'list_event.dart';
 part 'list_state.dart';
-/*
-class ListBloc extends Bloc<ListEvent, ListState> {
-  UserUseCase userUseCase;
-  ListBloc() : super(ListInitial());
-
-  @override
-  Stream<ListState> mapEventToState(
-    ListEvent event,
-  ) async* {
-    if (event is ListFetchEvent) {
-      Carousel data = await carouselRepository.getUserData();
-      yield ListSuccess(name: data as List);
-    } else {
-      yield ListFailure();
-    }
-  }
-}
-*/
 
 class ListBloc extends Bloc<ListEvent, ListState> {
   UserUseCase userCase;

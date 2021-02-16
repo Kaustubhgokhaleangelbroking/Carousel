@@ -7,15 +7,15 @@ class Carousel {
 
   Carousel.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
-      results = new List<Results>();
+      results = List<Results>();
       json['results'].forEach((v) {
-        results.add(new Results.fromJson(v));
+        results.add(Results.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.results != null) {
       data['results'] = this.results.map((v) => v.toJson()).toList();
     }

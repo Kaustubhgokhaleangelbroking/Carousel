@@ -1,14 +1,14 @@
-import 'package:Carousel/Data/models/carousel.dart';
+import '../../data/models/carousel.dart';
 
 import '../../data/repository/repository.dart';
 
 import '../../domain/repository/repository.dart';
 
 class UserUseCase {
-  CarouselRepositoryAbstract _carouselRepositoryAbstract;
+  CarouselRepository _carouselRepositoryAbstract;
 
   UserUseCase() {
-    this._carouselRepositoryAbstract = CarouselRepository();
+    this._carouselRepositoryAbstract = CarouselRepositoryImpl();
   }
 
   Future<Carousel> getUserData() => _carouselRepositoryAbstract.getUserData();
