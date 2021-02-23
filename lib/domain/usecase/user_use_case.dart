@@ -1,7 +1,5 @@
 import '../../data/models/carousel.dart';
-
 import '../../data/repository/repository.dart';
-
 import '../../domain/repository/repository.dart';
 
 class UserUseCase {
