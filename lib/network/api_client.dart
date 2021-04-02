@@ -11,6 +11,7 @@ class ApiClient {
   ApiClient._internal() {
     host = ApiEndPoint.baseUrl;
   }
+
   // facotry -> It wont create new instance rather returns existing instance
   /*
   In normal constructor, an instance gets created and the final variables get instantiated with the initializer list. This is why there's no return statement. The instance to return is already fixed, when executing the constructor!

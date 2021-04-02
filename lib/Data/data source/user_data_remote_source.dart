@@ -9,7 +9,7 @@ class UserDataRemoteSource {
     client = ApiClient();
   }
 
-  Future<Carousel> getUserData({int count = 1}) async {
+  Future<Carousel> getUserData({int count = 5}) async {
     print('${ApiEndPoint.randomUserList}$count');
     Map<String, dynamic> jsonData =
         await client.get('${ApiEndPoint.randomUserList}$count');

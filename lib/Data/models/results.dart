@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import './dob.dart';
-import './id.dart';
+// import './id.dart';
 import './location.dart';
 import './login.dart';
 import './name.dart';
@@ -15,23 +17,26 @@ class Results {
   Dob registered;
   String phone;
   String cell;
-  Id id;
+  // Id id;
   Picture picture;
   String nat;
+  String id;
+  bool isFavourite;
 
-  Results(
-      {this.gender,
-      this.name,
-      this.location,
-      this.email,
-      this.login,
-      this.dob,
-      this.registered,
-      this.phone,
-      this.cell,
-      this.id,
-      this.picture,
-      this.nat});
+  Results({
+    this.gender,
+    this.name,
+    this.location,
+    this.email,
+    this.login,
+    this.dob,
+    this.registered,
+    this.phone,
+    this.cell,
+    // this.id,
+    this.picture,
+    this.nat,
+  });
 
   Results.fromJson(Map<String, dynamic> json) {
     gender = json['gender'];
@@ -45,10 +50,11 @@ class Results {
         json['registered'] != null ? Dob.fromJson(json['registered']) : null;
     phone = json['phone'];
     cell = json['cell'];
-    id = json['id'] != null ? Id.fromJson(json['id']) : null;
+    // id = json['id'] != null ? Id.fromJson(json['id']) : null;
     picture =
         json['picture'] != null ? Picture.fromJson(json['picture']) : null;
     nat = json['nat'];
+    id = login.uuid;
   }
 
   Map<String, dynamic> toJson() {
@@ -72,17 +78,34 @@ class Results {
     }
     data['phone'] = this.phone;
     data['cell'] = this.cell;
-    if (this.id != null) {
-      data['id'] = this.id.toJson();
-    }
+    // if (this.id != null) {
+    //   data['id'] = this.id.toJson();
+    // }
     if (this.picture != null) {
       data['picture'] = this.picture.toJson();
     }
     data['nat'] = this.nat;
+    data['id'] = this.id;
     return data;
+  }
+
+  String toJsonString() {
+    return json.encode(toJson());
   }
 }
 
+//  Map<String, dynamic> toMap() {
+//     return <String, dynamic>{
+//       'id': id,
+//       'name': name,
+//       'location': location,
+//       'email': email,
+//       'login': login,
+//       'dob': dob,
+//       'phone': phone,
+//       'picture': picture,
+//     };
+//   }
 // import '../../data/models/user.dart';
 
 // class Results {
