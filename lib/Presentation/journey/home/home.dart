@@ -69,7 +69,6 @@ class _HomeState extends State<Home> {
   Container _getFavoriteButton() => Container(
         padding: EdgeInsets.symmetric(horizontal: 108.0),
         child: FloatingActionButton(
-          // color: Colors.blue,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           onPressed: () =>
@@ -92,15 +91,26 @@ class _HomeState extends State<Home> {
     }
   }
 
-  List<Widget> getCardList(ListState state) =>
-      (state.carousel?.results ?? []).map((user) => TinderCard(user)).toList();
+  List<Widget> getCardList(ListState state) => (state.carousel?.results ?? [])
+      .map(
+        (user) => TinderCard(user),
+      )
+      .toList();
 
   void onSwipeRight(int index) => listBloc.add(SaveUserEvent(index: index));
 
   void onSwipeLeft(int index) =>
       listBloc.add(RemoveUserItemEvent(index: index));
 }
-
+// child: TextButton.icon(
+//   icon: Icon(
+//     Icons.favorite_rounded,
+//     color: Colors.red,
+//   ),
+//   label: Text('Foavourite'),
+//   onPressed: () =>
+//       Navigator.pushNamed(context, RouteConstants.favorite),
+// ),
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_tindercard/flutter_tindercard.dart';
@@ -336,469 +346,469 @@ class _HomeState extends State<Home> {
 //   }
 // }
 
-// // '${state.carousel.results[0].location.street.name},' +
-// // '' +
-// // Widget swipeWidget(listState) {
-// //     return SwipeableWidget(
-// //       child: Column(
-// //         mainAxisAlignment: MainAxisAlignment.center,
-// //         children: [
-// //           CardExample(
-// //             imageUUrl: listState.picture.medium,
-// //             name: '${listState.name.title}.' +
-// //                 ' ' +
-// //                 '${listState.name.first}' +
-// //                 ' ' +
-// //                 '${listState.name.last}',
-// //             address:
-// //                 // '${state.carousel.results[0].location.street.name},' +
-// //                 // '' +
-// //                 '${listState.location.city},' +
-// //                     ' ' +
-// //                     '${listState.location.state},' +
-// //                     ' ' +
-// //                     '${listState.location.country}',
-// //             phone: listState.phone,
-// //           ),
-// //         ],
-// //       ),
-// //       onLeftSwipe: () => swipeLeft(listState),
-// //       onRightSwipe: () {
-// //         swipeRight(listState);
-// //         final snackBar = SnackBar(
-// //           content: Text(
-// //             'Yay! Card is added to favourite!',
-// //           ),
-// //           backgroundColor: Colors.green,
-// //           duration: Duration(milliseconds: 700),
-// //         );
+// '${state.carousel.results[0].location.street.name},' +
+// '' +
+// Widget swipeWidget(listState) {
+//     return SwipeableWidget(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           CardExample(
+//             imageUUrl: listState.picture.medium,
+//             name: '${listState.name.title}.' +
+//                 ' ' +
+//                 '${listState.name.first}' +
+//                 ' ' +
+//                 '${listState.name.last}',
+//             address:
+//                 // '${state.carousel.results[0].location.street.name},' +
+//                 // '' +
+//                 '${listState.location.city},' +
+//                     ' ' +
+//                     '${listState.location.state},' +
+//                     ' ' +
+//                     '${listState.location.country}',
+//             phone: listState.phone,
+//           ),
+//         ],
+//       ),
+//       onLeftSwipe: () => swipeLeft(listState),
+//       onRightSwipe: () {
+//         swipeRight(listState);
+//         final snackBar = SnackBar(
+//           content: Text(
+//             'Yay! Card is added to favourite!',
+//           ),
+//           backgroundColor: Colors.green,
+//           duration: Duration(milliseconds: 700),
+//         );
 
-// //         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-// //       },
-// //       nextCards: [],
-// //     );
-// //   }
+//         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+//       },
+//       nextCards: [],
+//     );
+//   }
 
-// // )
-// // return Stack(
-// // children: [ get list of cards from methods
+// )
+// return Stack(
+// children: [ get list of cards from methods
 
-// // totalNum: 5,
-// // swipeUpdateCallback:
-// //     (DragUpdateDetails details, Alignment align) {
-// //   /// Get swiping card's alignment
-// //   if (align.x < 0) {
-// //     swipeLeft();
-// //     //Card is LEFT swiping
-// //   } else if (align.x > 0) {
-// //     swipeRight(lstate);
-// //     final snackBar = SnackBar(
-// //       content: Text(
-// //         'Yay! Card is added to favourite!',
-// //       ),
-// //       backgroundColor: Colors.green,
-// //       duration: Duration(milliseconds: 700),
-// //     );
-// //     Scaffold.of(context).showSnackBar(snackBar);
-// //   }
-// //   //Card is RIGHT swiping
-// // },
-// // swipeCompleteCallback:
-// //     (CardSwipeOrientation orientation, int index) {
-// //   /// Get orientation & index of swiped card!
-// // },
-// // ),
-// // ],
-// // );
-// //  ],
-// // );
+// totalNum: 5,
+// swipeUpdateCallback:
+//     (DragUpdateDetails details, Alignment align) {
+//   /// Get swiping card's alignment
+//   if (align.x < 0) {
+//     swipeLeft();
+//     //Card is LEFT swiping
+//   } else if (align.x > 0) {
+//     swipeRight(lstate);
+//     final snackBar = SnackBar(
+//       content: Text(
+//         'Yay! Card is added to favourite!',
+//       ),
+//       backgroundColor: Colors.green,
+//       duration: Duration(milliseconds: 700),
+//     );
+//     Scaffold.of(context).showSnackBar(snackBar);
+//   }
+//   //Card is RIGHT swiping
+// },
+// swipeCompleteCallback:
+//     (CardSwipeOrientation orientation, int index) {
+//   /// Get orientation & index of swiped card!
+// },
+// ),
+// ],
+// );
+//  ],
+// );
 
-// //  TinderSwapCard(
-// //                             allowVerticalMovement: false,
-// //                             cardBuilder: (context, index) {
-// //                               return Column(
-// //                                 mainAxisAlignment: MainAxisAlignment.center,
-// //                                 children: [
-// //                                   CardExample(
-// //                                     imageUUrl: lstate.picture.medium,
-// //                                     name: '${lstate.name.title}.' +
-// //                                         ' ' +
-// //                                         '${lstate.name.first}' +
-// //                                         ' ' +
-// //                                         '${lstate.name.last}',
-// //                                     address:
-// //                                         // '${state.carousel.results[0].location.street.name},' +
-// //                                         // '' +
-// //                                         '${lstate.location.city},' +
-// //                                             ' ' +
-// //                                             '${lstate.location.state},' +
-// //                                             ' ' +
-// //                                             '${lstate.location.country}',
-// //                                     phone: lstate.phone,
-// //                                   ),
-// //                                 ],
-// //                               );
-// //                             },
-// //                             totalNum: 5,
-// //                             swipeUpdateCallback:
-// //                                 (DragUpdateDetails details, Alignment align) {
-// //                               /// Get swiping card's alignment
-// //                               if (align.x < 0) {
-// //                                 swipeLeft();
-// //                                 //Card is LEFT swiping
-// //                               } else if (align.x > 0) {
-// //                                 swipeRight(lstate);
-// //                                 final snackBar = SnackBar(
-// //                                   content: Text(
-// //                                     'Yay! Card is added to favourite!',
-// //                                   ),
-// //                                   backgroundColor: Colors.green,
-// //                                   duration: Duration(milliseconds: 700),
-// //                                 );
-// //                                 Scaffold.of(context).showSnackBar(snackBar);
-// //                               }
-// //                               //Card is RIGHT swiping
-// //                             },
-// //                             swipeCompleteCallback:
-// //                                 (CardSwipeOrientation orientation, int index) {
-// //                               /// Get orientation & index of swiped card!
-// //                             },
-// //                           ),
+//  TinderSwapCard(
+//                             allowVerticalMovement: false,
+//                             cardBuilder: (context, index) {
+//                               return Column(
+//                                 mainAxisAlignment: MainAxisAlignment.center,
+//                                 children: [
+//                                   CardExample(
+//                                     imageUUrl: lstate.picture.medium,
+//                                     name: '${lstate.name.title}.' +
+//                                         ' ' +
+//                                         '${lstate.name.first}' +
+//                                         ' ' +
+//                                         '${lstate.name.last}',
+//                                     address:
+//                                         // '${state.carousel.results[0].location.street.name},' +
+//                                         // '' +
+//                                         '${lstate.location.city},' +
+//                                             ' ' +
+//                                             '${lstate.location.state},' +
+//                                             ' ' +
+//                                             '${lstate.location.country}',
+//                                     phone: lstate.phone,
+//                                   ),
+//                                 ],
+//                               );
+//                             },
+//                             totalNum: 5,
+//                             swipeUpdateCallback:
+//                                 (DragUpdateDetails details, Alignment align) {
+//                               /// Get swiping card's alignment
+//                               if (align.x < 0) {
+//                                 swipeLeft();
+//                                 //Card is LEFT swiping
+//                               } else if (align.x > 0) {
+//                                 swipeRight(lstate);
+//                                 final snackBar = SnackBar(
+//                                   content: Text(
+//                                     'Yay! Card is added to favourite!',
+//                                   ),
+//                                   backgroundColor: Colors.green,
+//                                   duration: Duration(milliseconds: 700),
+//                                 );
+//                                 Scaffold.of(context).showSnackBar(snackBar);
+//                               }
+//                               //Card is RIGHT swiping
+//                             },
+//                             swipeCompleteCallback:
+//                                 (CardSwipeOrientation orientation, int index) {
+//                               /// Get orientation & index of swiped card!
+//                             },
+//                           ),
 
-// // totalNum: 5,
-// // swipeUpdateCallback:
-// //     (DragUpdateDetails details, Alignment align) {
-// //   /// Get swiping card's alignment
-// //   if (align.x < 0) {
-// //     swipeLeft();
-// //     //Card is LEFT swiping
-// //   } else if (align.x > 0) {
-// //     swipeRight(lstate);
-// //     final snackBar = SnackBar(
-// //       content: Text(
-// //         'Yay! Card is added to favourite!',
-// //       ),
-// //       backgroundColor: Colors.green,
-// //       duration: Duration(milliseconds: 700),
-// //     );
-// //     Scaffold.of(context).showSnackBar(snackBar);
-// //   }
-// //   //Card is RIGHT swiping
-// // },
-// // swipeCompleteCallback:
-// //     (CardSwipeOrientation orientation, int index) {
-// //   /// Get orientation & index of swiped card!
-// // },
-// // ),
+// totalNum: 5,
+// swipeUpdateCallback:
+//     (DragUpdateDetails details, Alignment align) {
+//   /// Get swiping card's alignment
+//   if (align.x < 0) {
+//     swipeLeft();
+//     //Card is LEFT swiping
+//   } else if (align.x > 0) {
+//     swipeRight(lstate);
+//     final snackBar = SnackBar(
+//       content: Text(
+//         'Yay! Card is added to favourite!',
+//       ),
+//       backgroundColor: Colors.green,
+//       duration: Duration(milliseconds: 700),
+//     );
+//     Scaffold.of(context).showSnackBar(snackBar);
+//   }
+//   //Card is RIGHT swiping
+// },
+// swipeCompleteCallback:
+//     (CardSwipeOrientation orientation, int index) {
+//   /// Get orientation & index of swiped card!
+// },
+// ),
 
-// //       // allowVerticalMovement: false,
-// //       // cardBuilder: (context, index) {
-// //       child: Column(
-// //         mainAxisAlignment: MainAxisAlignment.center,
-// //         children: [
-// //           CardExample(
-// //             imageUUrl: lstate.picture.medium,
-// //             name: '${lstate.name.title}.' +
-// //                 ' ' +
-// //                 '${lstate.name.first}' +
-// //                 ' ' +
-// //                 '${lstate.name.last}',
-// //             address:
-// //                 // '${state.carousel.results[0].location.street.name},' +
-// //                 // '' +
-// //                 '${lstate.location.city},' +
-// //                     ' ' +
-// //                     '${lstate.location.state},' +
-// //                     ' ' +
-// //                     '${lstate.location.country}',
-// //             phone: lstate.phone,
-// //           ),
-// //         ],
-// //       ),
-// //       onLeftSwipe: () => swipeLeft(),
-// //       onRightSwipe: () {
-// //         swipeRight(lstate);
-// //         final snackBar = SnackBar(
-// //           content: Text(
-// //             'Yay! Card is added to favourite!',
-// //           ),
-// //           backgroundColor: Colors.green,
-// //           duration: Duration(milliseconds: 700),
-// //         );
-// //         Scaffold.of(context).showSnackBar(snackBar);
-// //       }),
-// // (
-// //      child: SingleChildScrollView(
+//       // allowVerticalMovement: false,
+//       // cardBuilder: (context, index) {
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           CardExample(
+//             imageUUrl: lstate.picture.medium,
+//             name: '${lstate.name.title}.' +
+//                 ' ' +
+//                 '${lstate.name.first}' +
+//                 ' ' +
+//                 '${lstate.name.last}',
+//             address:
+//                 // '${state.carousel.results[0].location.street.name},' +
+//                 // '' +
+//                 '${lstate.location.city},' +
+//                     ' ' +
+//                     '${lstate.location.state},' +
+//                     ' ' +
+//                     '${lstate.location.country}',
+//             phone: lstate.phone,
+//           ),
+//         ],
+//       ),
+//       onLeftSwipe: () => swipeLeft(),
+//       onRightSwipe: () {
+//         swipeRight(lstate);
+//         final snackBar = SnackBar(
+//           content: Text(
+//             'Yay! Card is added to favourite!',
+//           ),
+//           backgroundColor: Colors.green,
+//           duration: Duration(milliseconds: 700),
+//         );
+//         Scaffold.of(context).showSnackBar(snackBar);
+//       }),
+// (
+//      child: SingleChildScrollView(
 
-// //   actions: <Widget>[
-// //     IconButton(
-// //       icon: const Icon(Icons.list),
-// //       onPressed: pushSaved(),
-// //     ),
-// //   ],
+//   actions: <Widget>[
+//     IconButton(
+//       icon: const Icon(Icons.list),
+//       onPressed: pushSaved(),
+//     ),
+//   ],
 
-// // onLeftSwipe:
-// // () => swipeLeft();
-// // onRightSwipe:
-// // () {
-// //   swipeRight(lstate);
-// //   final snackBar = SnackBar(
-// //     content: Text(
-// //       'Yay! Card is added to favourite!',
-// //     ),
-// //     backgroundColor: Colors.green,
-// //     duration: Duration(milliseconds: 700),
-// //   );
-// //   Scaffold.of(context).showSnackBar(snackBar);
-// // };
+// onLeftSwipe:
+// () => swipeLeft();
+// onRightSwipe:
+// () {
+//   swipeRight(lstate);
+//   final snackBar = SnackBar(
+//     content: Text(
+//       'Yay! Card is added to favourite!',
+//     ),
+//     backgroundColor: Colors.green,
+//     duration: Duration(milliseconds: 700),
+//   );
+//   Scaffold.of(context).showSnackBar(snackBar);
+// };
 
-// // FloatingActionButton.extended(
-// //   label: Text(
-// //     'Left Swipe',
-// //     textAlign: TextAlign.center,
-// //   ),
-// //   onPressed: () {
-// //     swipeLeft();
-// //   },
-// // ),
-// // Container(
-// //   margin: EdgeInsets.only(top: 10, bottom: 5),
-// //  //  top: 10, left: 10, right: 10
-// //   padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-// //   //top: 10, bottom: 5
-// //   child: FloatingActionButton.extended(
-// //     label: Text(
-// //       'Favourite',
-// //       textAlign: TextAlign.center,
-// //     ),
-// //     onPressed: () {
-// //       Navigator.pushNamed(context, '/favourite');
-// //       Favourite();
-// //     },
-// //   ),
-// // ),
+// FloatingActionButton.extended(
+//   label: Text(
+//     'Left Swipe',
+//     textAlign: TextAlign.center,
+//   ),
+//   onPressed: () {
+//     swipeLeft();
+//   },
+// ),
+// Container(
+//   margin: EdgeInsets.only(top: 10, bottom: 5),
+//  //  top: 10, left: 10, right: 10
+//   padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+//   //top: 10, bottom: 5
+//   child: FloatingActionButton.extended(
+//     label: Text(
+//       'Favourite',
+//       textAlign: TextAlign.center,
+//     ),
+//     onPressed: () {
+//       Navigator.pushNamed(context, '/favourite');
+//       Favourite();
+//     },
+//   ),
+// ),
 
-// // FloatingActionButton.extended(
-// //   label: Text(
-// //     'Right Swipe',
-// //     textAlign: TextAlign.center,
-// //   ),
-// //   onPressed: () {
-// //     swipeRight();
-// //   },
-// // )
-// // ],
-// // ),
-// // SizedBox(
-// //   height: 15,
-// // ),
-// // FlatButton(
-// //   onPressed: () {
-// //     listBloc.add(ListFetchEvent());
-// //   },
-// //   child: Text(
-// //     "Tap to Load",
-// //     textAlign: TextAlign.center,
-// //   ),
-// // ),
+// FloatingActionButton.extended(
+//   label: Text(
+//     'Right Swipe',
+//     textAlign: TextAlign.center,
+//   ),
+//   onPressed: () {
+//     swipeRight();
+//   },
+// )
+// ],
+// ),
+// SizedBox(
+//   height: 15,
+// ),
+// FlatButton(
+//   onPressed: () {
+//     listBloc.add(ListFetchEvent());
+//   },
+//   child: Text(
+//     "Tap to Load",
+//     textAlign: TextAlign.center,
+//   ),
+// ),
 
-// // SizedBox(
-// //   height: 40,
-// // ),
-// // Row(
-// //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-// //   children: [
-// //     FloatingActionButton.extended(
-// //       label: Text(
-// //         'Left Swipe',
-// //         textAlign: TextAlign.center,
-// //       ),
-// //       onPressed: () {
-// //         swipeLeft();
-// //       },
-// //     ),
-// //     FloatingActionButton.extended(
-// //       label: Text(
-// //         'Right Swipe',
-// //         textAlign: TextAlign.center,
-// //       ),
-// //       onPressed: () {
-// //         swipeRight(lstate);
-// //       },
-// //     )
-// //   ],
-// // ),
+// SizedBox(
+//   height: 40,
+// ),
+// Row(
+//   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//   children: [
+//     FloatingActionButton.extended(
+//       label: Text(
+//         'Left Swipe',
+//         textAlign: TextAlign.center,
+//       ),
+//       onPressed: () {
+//         swipeLeft();
+//       },
+//     ),
+//     FloatingActionButton.extended(
+//       label: Text(
+//         'Right Swipe',
+//         textAlign: TextAlign.center,
+//       ),
+//       onPressed: () {
+//         swipeRight(lstate);
+//       },
+//     )
+//   ],
+// ),
 
-// // AppBar _appBar() {
-// //   return AppBar(
-// //     centerTitle: true,
-// //     automaticallyImplyLeading: false,
-// //     title: Text(
-// //       "Home",
-// //       style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w600)
-// //   ),);
-// // }
+// AppBar _appBar() {
+//   return AppBar(
+//     centerTitle: true,
+//     automaticallyImplyLeading: false,
+//     title: Text(
+//       "Home",
+//       style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w600)
+//   ),);
+// }
 
-// // CardExample(
+// CardExample(
 
-// //   imageUUrl: state.carousel.results[0].picture.medium,
-// //   name: '${state.carousel.results[0].name.title}.' +
-// //       ' ' +
-// //       '${state.carousel.results[0].name.first}' +
-// //       ' ' +
-// //       '${state.carousel.results[0].name.last}',
-// //   address: '${state.carousel.results[0].location.street.name},' +
-// //       ' ' +
-// //       '${state.carousel.results[0].location.city},' +
-// //       ' ' +
-// //       '${state.carousel.results[0].location.state},' +
-// //       ' ' +
-// //       '${state.carousel.results[0].location.country}',
-// //   phone: state.carousel.results[0].phone,
-// // ),
-// // Text(
-// //   state.carousel.results[0].name.first,
-// // ),
+//   imageUUrl: state.carousel.results[0].picture.medium,
+//   name: '${state.carousel.results[0].name.title}.' +
+//       ' ' +
+//       '${state.carousel.results[0].name.first}' +
+//       ' ' +
+//       '${state.carousel.results[0].name.last}',
+//   address: '${state.carousel.results[0].location.street.name},' +
+//       ' ' +
+//       '${state.carousel.results[0].location.city},' +
+//       ' ' +
+//       '${state.carousel.results[0].location.state},' +
+//       ' ' +
+//       '${state.carousel.results[0].location.country}',
+//   phone: state.carousel.results[0].phone,
+// ),
+// Text(
+//   state.carousel.results[0].name.first,
+// ),
 
-// /*
+/*
 
-//   ListView(
-//       children: [
-//         Text(
-//           state.carousel.results[4].name.first,
-//           textAlign: TextAlign.center,
-//           style: TextStyle(fontSize: 30),
-//         )
-//       ],
+  ListView(
+      children: [
+        Text(
+          state.carousel.results[4].name.first,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 30),
+        )
+      ],
+    );
+
+  */
+
+// if (currentCardIndex < cards.length)
+//   SwipeableWidget(
+//     key: ObjectKey(currentCardIndex),
+//     child: cards[currentCardIndex],
+//     onLeftSwipe: () => swipeLeft(),
+//     onRightSwipe: () => swipeRight(),
+//     nextCards: <Widget>[
+//       if (!(currentCardIndex + 1 >= cards.length))
+//         Align(
+//           alignment: Alignment.center,
+//           child: cards[currentCardIndex + 1],
+//         ),
+//     ],
+//   )
+// else
+//   Center(
+//     child: FlatButton(
+//       child: Text("Reset deck"),
+//       onPressed: () => setState(() => currentCardIndex = 0),
+//     ),
+//   ),
+
+// if (currentCardIndex < cards.length)
+//   cardControllerRow(_cardController),
+
 //     );
 
-//   */
+// void swipeLeft(var a) {
+//   print("left");
+//   Text(a);
 
-// // if (currentCardIndex < cards.length)
-// //   SwipeableWidget(
-// //     key: ObjectKey(currentCardIndex),
-// //     child: cards[currentCardIndex],
-// //     onLeftSwipe: () => swipeLeft(),
-// //     onRightSwipe: () => swipeRight(),
-// //     nextCards: <Widget>[
-// //       if (!(currentCardIndex + 1 >= cards.length))
-// //         Align(
-// //           alignment: Alignment.center,
-// //           child: cards[currentCardIndex + 1],
-// //         ),
-// //     ],
-// //   )
-// // else
-// //   Center(
-// //     child: FlatButton(
-// //       child: Text("Reset deck"),
-// //       onPressed: () => setState(() => currentCardIndex = 0),
-// //     ),
-// //   ),
+//   setState(() => currentCardIndex++);
+// }
 
-// // if (currentCardIndex < cards.length)
-// //   cardControllerRow(_cardController),
+// void swipeRight(var a) {
+//   print("right");
+//   Text(a);
+//   setState(() => currentCardIndex++);
+// }
 
-// //     );
+// void swipeTop() {
+//   print("top");
+//   setState(() => currentCardIndex++);
+// }
 
-// // void swipeLeft(var a) {
-// //   print("left");
-// //   Text(a);
+// void swipeBottom() {
+//   print("top");
+//   setState(() => currentCardIndex++);
+// }
 
-// //   setState(() => currentCardIndex++);
-// // }
-
-// // void swipeRight(var a) {
-// //   print("right");
-// //   Text(a);
-// //   setState(() => currentCardIndex++);
-// // }
-
-// // void swipeTop() {
-// //   print("top");
-// //   setState(() => currentCardIndex++);
-// // }
-
-// // void swipeBottom() {
-// //   print("top");
-// //   setState(() => currentCardIndex++);
-// // }
-
-// // Widget cardControllerRow(SwipeableWidgetController cardController) {
-// //   return Row(
-// //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-// //     children: <Widget>[
-// //       FlatButton(
-// //         child: Text("Left"),
-// //         onPressed: () => cardController.triggerSwipeLeft(),
-// //       ),
-// //       FlatButton(
-// //         child: Text("Right"),
-// //         onPressed: () => cardController.triggerSwipeRight(),
-// //       ),
-// //     ],
-// //   );
-// // }
-
-// /*
-//   ListView(
-//   children: [
-//   Text(
-//   state.carousel.results[2].name.first,
-//   textAlign: TextAlign.center,
-//   style: TextStyle(fontSize: 30),
-//   )
-//   ],
+// Widget cardControllerRow(SwipeableWidgetController cardController) {
+//   return Row(
+//     mainAxisAlignment: MainAxisAlignment.spaceAround,
+//     children: <Widget>[
+//       FlatButton(
+//         child: Text("Left"),
+//         onPressed: () => cardController.triggerSwipeLeft(),
+//       ),
+//       FlatButton(
+//         child: Text("Right"),
+//         onPressed: () => cardController.triggerSwipeRight(),
+//       ),
+//     ],
 //   );
-//   ListView.builder(
-//   padding: const EdgeInsets.all(8),
-//   itemCount: 1,
-//   itemBuilder: (BuildContext context, int index) {
-//   return Text(
-//   state.carousel.results[2].location.postcode.toString(),
-//   textAlign: TextAlign.center,
-//   style: TextStyle(fontSize: 30),
-//   );
-//   },
-//   );
-//   Text(
-//   state.carousel.results[2].name.first,
-//   textAlign: TextAlign.center,
-//   style: TextStyle(fontSize: 30),
+// }
 
-//   user journey
-//   screen group of modules
-//   eg home functionality goes in home
-//   );*/
+/*
+  ListView(
+  children: [
+  Text(
+  state.carousel.results[2].name.first,
+  textAlign: TextAlign.center,
+  style: TextStyle(fontSize: 30),
+  )
+  ],
+  );
+  ListView.builder(
+  padding: const EdgeInsets.all(8),
+  itemCount: 1,
+  itemBuilder: (BuildContext context, int index) {
+  return Text(
+  state.carousel.results[2].location.postcode.toString(),
+  textAlign: TextAlign.center,
+  style: TextStyle(fontSize: 30),
+  );
+  },
+  );
+  Text(
+  state.carousel.results[2].name.first,
+  textAlign: TextAlign.center,
+  style: TextStyle(fontSize: 30),
 
-// // CardArrangement(
-// //     imageuUrl:
-// //         state.carousel.results[0].picture.medium),
-// // SizedBox(
-// //   height: 10,
-// // ),
-// // Text(state.carousel.results[0].picture.medium),
-// // SizedBox(
-// //   height: 10,
-// // ),
-// // Text('${state.carousel.results[0].name.title}.' +
-// //     ' ' +
-// //     '${state.carousel.results[0].name.first}' +
-// //     ' ' +
-// //     '${state.carousel.results[0].name.last}'),
-// // SizedBox(
-// //   height: 10,
-// // ),
-// // Text('${state.carousel.results[0].location.street.name},' +
-// //     ' ' +
-// //     '${state.carousel.results[0].location.city},' +
-// //     ' ' +
-// //     '${state.carousel.results[0].location.state},' +
-// //     ' ' +
-// //     '${state.carousel.results[0].location.country}'),
-// // SizedBox(
-// //   height: 10,
-// // ),
-// // Text(
-// //   state.carousel.results[0].phone,
-// // ),
+  user journey
+  screen group of modules
+  eg home functionality goes in home
+  );*/
+
+// CardArrangement(
+//     imageuUrl:
+//         state.carousel.results[0].picture.medium),
+// SizedBox(
+//   height: 10,
+// ),
+// Text(state.carousel.results[0].picture.medium),
+// SizedBox(
+//   height: 10,
+// ),
+// Text('${state.carousel.results[0].name.title}.' +
+//     ' ' +
+//     '${state.carousel.results[0].name.first}' +
+//     ' ' +
+//     '${state.carousel.results[0].name.last}'),
+// SizedBox(
+//   height: 10,
+// ),
+// Text('${state.carousel.results[0].location.street.name},' +
+//     ' ' +
+//     '${state.carousel.results[0].location.city},' +
+//     ' ' +
+//     '${state.carousel.results[0].location.state},' +
+//     ' ' +
+//     '${state.carousel.results[0].location.country}'),
+// SizedBox(
+//   height: 10,
+// ),
+// Text(
+//   state.carousel.results[0].phone,
+// ),

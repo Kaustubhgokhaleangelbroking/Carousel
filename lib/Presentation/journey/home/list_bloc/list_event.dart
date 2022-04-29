@@ -1,9 +1,7 @@
 part of 'list_bloc.dart';
 
 abstract class ListEvent {
-  const ListEvent();
-
-  List<Object> get props => [];
+  ListEvent();
 }
 
 class InitialEvent extends ListEvent {}

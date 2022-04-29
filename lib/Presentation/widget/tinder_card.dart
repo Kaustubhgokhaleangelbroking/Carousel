@@ -1,5 +1,8 @@
 // import 'package:bot_toast/bot_toast.dart';
+import 'package:_carousel/presentation/widget/bloc/button_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:path/path.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:speech_bubble/speech_bubble.dart';
 
@@ -15,12 +18,16 @@ class TinderCard extends StatefulWidget {
 }
 
 class _TinderCardState extends State<TinderCard> {
+  ButtonBloc buttonBloc;
+
   @override
-  Widget build(BuildContext context) => //MaterialApp(
-      // builder: BotToastInit(), //1. call BotToastInit
-      // navigatorObservers: [BotToastNavigatorObserver()],
-      //home:
-      Container(
+  void initState() {
+    super.initState();
+    buttonBloc = ButtonBloc();
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
         width: MediaQuery.of(context).size.width * 0.8,
         height: MediaQuery.of(context).size.height * 0.7,
         child: Card(
@@ -41,22 +48,36 @@ class _TinderCardState extends State<TinderCard> {
               _divider,
               getAddress(),
               _divider,
-              navigationBar(),
+              BlocBuilder<ButtonBloc, ButtonState>(
+                bloc: buttonBloc,
+                builder: (context, state) {
+                  if (state is ButtonDataState) {
+                    return Text('${state.text}');
+                  }
+                  if (state is ButtonDataLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Text('Call an event !!!');
+                },
+              ),
+              navigationBar(widget.user),
             ],
           ),
         ),
-        //  ),
+        // ),
       );
 
   CircleAvatar getProfileImage() => CircleAvatar(
         radius: 50.0,
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey[900],
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(48.0),
+          borderRadius: BorderRadius.circular(50.0), //48
           child: Image.network(
             widget.user.picture.large,
-            width: 96, //double to radius. to make circular border
-            height: 96, //double to radius. to make circular border
+            width: 98.5, //double to radius. to make circular border 96
+            height: 98.5, //double to radius. to make circular border 96
           ),
         ),
       );
@@ -96,24 +117,24 @@ class _TinderCardState extends State<TinderCard> {
             style: TextStyle(
               fontSize: 22.5,
               color: Colors.black,
+
               // fontWeight: FontWeight.bold,
             ),
+            // overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
           ),
         ],
       );
 
-  Widget navigationBar() {
+  Widget navigationBar(Results user) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      // backgroundColor: Color(0xFF6200EE),
+      elevation: 0.0,
+      backgroundColor: Colors.white10,
       selectedItemColor: Colors.green,
       unselectedItemColor: Colors.blueGrey.withOpacity(.60),
       selectedFontSize: 14,
       unselectedFontSize: 14,
-      onTap: (value) {
-        // Respond to item press.
-      },
       items: [
         BottomNavigationBarItem(
           label: 'Information',
@@ -132,26 +153,89 @@ class _TinderCardState extends State<TinderCard> {
           icon: Icon(Icons.calendar_today),
         ),
       ],
+      onTap: (value) {
+        // setState(() {
+        //   BotToast.showText(text: value.toString());
+        // });
+        buttonBloc.add(
+          ButtonTapEvent(icons: value, user: user),
+        );
+      },
     );
   }
 
-  Widget buttonIcon(IconData icon) => IconButton(
-        onPressed: null,
-        // onPressed: BotToast.showSimpleNotification(
-        //   title: "Hi there !!",
-        // ), // popup a notification toast;
-        icon: Icon(
-          icon,
-          color: Colors.blueGrey,
-          size: 35,
-        ),
-      );
-
   Divider get _divider => Divider(height: 28.0, color: Colors.transparent);
+
+  // Widget buttonIcon(IconData icon) => IconButton(
+  //       onPressed: null,
+  //       // onPressed: BotToast.showSimpleNotification(
+  //       //   title: "Hi there !!",
+  //       // ), // popup a notification toast;
+  //       icon: Icon(
+  //         icon,
+  //         color: Colors.blueGrey,
+  //         size: 35,
+  //       ),
+  //     );
+
 }
 //bottom navigation bar
 //button Bar
 /*
+
+Name folder in small caps
+Class name = foldername
+Use package import at all times
+always organise your imports
+Remove comments or add todo might require later
+Todo with username
+Free number / free text (models coordinates, id etc)  -> common folder created json key constants 
+Entity -> domain
+Crater new folder tinder card move dart file in folder ,crate constant dart file which is an abstract class which contains hardcode number 
+Font size 1
+
+Dart
+Package
+Flutter 
+Imports 
+
+Screen util package
+
+Navigation bloc
+
+
+Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.info),
+                    onPressed: buttonBloc.add(ButtonTapEvent()),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.location_on),
+                    onPressed: null,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.phone),
+                    onPressed: null,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    onPressed: null,
+                  ),
+                ],
+              ),
+buttonIcon(Icons.info),
+                  buttonIcon(Icons.location_on),
+                  buttonIcon(Icons.phone),
+                  buttonIcon(Icons.calendar_today_rounded),
+
+if (state is ButtonDataLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  else 
   onPress(context) {
     GestureDetector(
       onTap: () {
@@ -213,7 +297,6 @@ class _TinderCardState extends State<TinderCard> {
 // BottomNavigationBar(items: items),
 // BottomNavigationBar(
 //   type: BottomNavigationBarType.fixed,
-//   // backgroundColor: Color(0xFF6200EE),
 //   selectedItemColor: Colors.green,
 //   unselectedItemColor: Colors.blueGrey.withOpacity(.60),
 //   selectedFontSize: 14,
